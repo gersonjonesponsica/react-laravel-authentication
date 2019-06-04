@@ -12,6 +12,8 @@ import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import Profile from './components/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
+import Forgot from './components/ForgetPassword'
+import ResetPassword from './components/ResetPassword';
 
 const ProtectedRoute2 = ({ component: Component, ...rest }) => {
   return (
@@ -46,7 +48,9 @@ ReactDOM.render(
           <ProtectedRoute2 exact path="/register" component={Register} />
           <ProtectedRoute2 exact path="/login" component={Login} />
           <ProtectedRoute exact path="/profile" component={Profile} />
-          <Route path='*' component={() => "404 Not Found"}/>
+          <ProtectedRoute2 path='/forgotpassword' component={Forgot}/>
+          <Route path='/password/reset/:token' component={ResetPassword}/>
+          <ProtectedRoute2 path='*' component={() => "404 Not Found"}/>
         </Switch>
       </div>
 </BrowserRouter>, document.getElementById('app'));

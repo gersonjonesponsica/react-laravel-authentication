@@ -38,6 +38,49 @@ export const login = user => {
         })
 }
 
+export const resetPassword = user => {
+    return axios
+        .post(
+            '/api/password/reset',
+            {
+                token: user.token,
+                email: user.email,
+                password: user.password,
+                password_confirmation: user.password_confirmation
+            },
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+        )
+        .then(response => {
+            // console.log(response)
+            return response
+        })
+        .catch(err => {
+            console.log('true')
+        })
+}
+
+export const forgetPassword = email => {
+    return axios
+        .post(
+            'api/password/email',
+            {
+                email: email
+            },
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }
+        )
+        .then(response => {
+            // console.log(response)
+            return response.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 export const getProfile = () => {
     return axios
         .get('api/profile', {

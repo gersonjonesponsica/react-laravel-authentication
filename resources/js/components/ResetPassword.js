@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { login } from '../UserFunctions'
+import { resetPassword } from './UserFunctions'
 import { Link } from 'react-router-dom'
-import '../Register/Register.css'
+import './Register/Register.css'
 
-class Login extends Component {
-    constructor() {
-        super()
+class ResetPassword extends Component {
+    constructor(props) {
+        super(props)
         this.state = {
-            email: '',
+        	token: props.match.params.token,
+            email : '',
             password: '',
+            password_confirmation: '',
             isLoading: false
         }
 
@@ -23,13 +25,15 @@ class Login extends Component {
         e.preventDefault()
         this.setState({isLoading: true})
         const user = {
+            token:this.state.token,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            password_confirmation: this.state.password_confirmation,
         }
 
-        login(user).then(res => {
+        resetPassword(user).then(res => {
             if (res) {
-                this.props.history.push('/profile')
+                this.props.history.push('/login')
                 this.setState({err: false});
             }else
                 this.setState({err: true});
@@ -40,7 +44,7 @@ class Login extends Component {
 
     render() {
         let error = this.state.err ;
-        const {isLoading, password, email} = this.state
+        const {isLoading, password, password_confirmation, email} = this.state
         let msg = (!error) ? 'Login Successful' : 'Wrong Credentials' ;
         let name = (!error) ? 'alert alert-success alert-dismissible' : 'alert alert-danger alert-dismissible' ;
         return (
@@ -53,17 +57,10 @@ class Login extends Component {
                                 <img className="rounded-circle" alt="..." src="https://logo.clearbit.com/baremetrics.com"/>
                             </div>
                                 <h1 className="h3 m-3 font-weight-normal text-center">
-                                    Please sign in
+                                Reset Password
                                 </h1>
-                            
+                                {error != undefined && <div className={name} role="alert"><a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>{msg}</div>}
 
-                                {/* <div className={name}>
-                                    {error != undefined && <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> { msg }}
-                                </div> */}
-
-                                {/* <div className="col-md-offset-2 col-md-8 col-md-offset-2"> */}
-                                    {error != undefined && <div className={name} role="alert"><a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>{msg}</div>}
-                                {/* </div>   */}
                                 <div className="form-group">
                                     <label htmlFor="email">Email address</label>
                                     <input
@@ -71,8 +68,7 @@ class Login extends Component {
                                         className="form-control"
                                         name="email"
                                         placeholder="Enter email"
-                                        value={email}
-                                        onChange={this.onChange}
+                                        onChange={this.onChange.bind(this)} required autoFocus 
                                     />
                                 </div>
                                 <div className="form-group">
@@ -86,17 +82,28 @@ class Login extends Component {
                                         onChange={this.onChange}
                                     />
                                 </div>
+                                <div className="form-group">
+                                    <label htmlFor="password">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        name="password_confirmation"
+                                        placeholder="Password"
+                                        value={password_confirmation}
+                                        onChange={this.onChange.bind(this)}
+                                    />
+                                </div>
                                 <button
                                     type="submit"
                                     className="btn btn-lg btn-primary btn-block"
                                     disabled={isLoading}
                                 >
-                                   {isLoading ? 'Loading...' : 'Sign in'}
+                                   {isLoading ? 'Loading...' : 'Reset password'}
                                 </button>
-                                <div className="text-center pt-3">
-                                    {/* </br> */}
+                                {/* <div className="text-center pt-3">
+                                
                                     <p className="text-dark mr-1">Already have an account? 
-                                    {/* <a href="/register"> Sign Up here</a> */}
+                                    
                                     <Link to="/register" className='ml-1'>
                                      Sign Up
                                     </Link>
@@ -106,7 +113,7 @@ class Login extends Component {
                                     <Link to="/forgotpassword">
                                      Forget password
                                     </Link>
-                                </div>
+                                </div> */}
                             </form>
                             
                         </div>
@@ -117,4 +124,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default ResetPassword

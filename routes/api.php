@@ -20,6 +20,8 @@ Route::delete('tasks/{id}', 'TaskController@delete');
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
 Route::get('profile', 'UserController@getAuthenticatedUser');
+Route::post('password/email','Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/reset','Auth\ResetPasswordController@reset');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
