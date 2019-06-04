@@ -1,0 +1,11 @@
+.card-authentication1{
+    max-width: 100rem !important;
+    width: 30rem;
+}
+.card {
+    margin-bottom: 25px;
+    box-shadow: none;
+    background-color: #f7fafe;
+    border: 1px solid #e7ebf1;
+    border-radius: 0;
+}
