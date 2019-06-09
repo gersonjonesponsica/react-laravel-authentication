@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { register } from '../UserFunctions'
+import { register } from '../Functions/UserFunctions'
 import { Link, withRouter } from 'react-router-dom'
 import './Register.css'
 

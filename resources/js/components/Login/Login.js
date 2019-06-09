@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { login } from '../UserFunctions'
+import { login } from '../Functions/UserFunctions'
 import { Link } from 'react-router-dom'
-import '../Register/Register.css'
+// import '../Register/Register.css'
 
 class Login extends Component {
     constructor() {
@@ -65,7 +65,7 @@ class Login extends Component {
                                     {error != undefined && <div className={name} role="alert"><a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>{msg}</div>}
                                 {/* </div>   */}
                                 <div className="form-group">
-                                    <label htmlFor="email">Email address</label>
+                                    <label for="email" style={{textAlign:'left'}}>Email address</label>
                                     <input
                                         type="email"
                                         className="form-control"

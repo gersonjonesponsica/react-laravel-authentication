@@ -4,9 +4,10 @@ require('./bootstrap');
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-//import registerServiceWorker from './registerServiceWorker';
+import 'font-awesome/css/font-awesome.min.css'
+import './App.css'
 
-import Navbar from './components/Navbar'
+// import Navbar from './components/Navbar'
 import Landing from './components/Landing'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
@@ -14,6 +15,8 @@ import Profile from './components/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
 import Forgot from './components/ForgetPassword'
 import ResetPassword from './components/ResetPassword';
+import Task from './components/Task/Task';
+// import Home from './components/Home';
 
 const ProtectedRoute2 = ({ component: Component, ...rest }) => {
   return (
@@ -44,7 +47,9 @@ ReactDOM.render(
     <div className="App">
         <Switch>
           <Route exact path="/" component={Landing} />
+          {/* <Route exact path="/home2" component={Home} /> */}
           <Route exact path="/home" component={Landing} />
+          <ProtectedRoute exact path="/task" component={Task} />
           <ProtectedRoute2 exact path="/register" component={Register} />
           <ProtectedRoute2 exact path="/login" component={Login} />
           <ProtectedRoute exact path="/profile" component={Profile} />

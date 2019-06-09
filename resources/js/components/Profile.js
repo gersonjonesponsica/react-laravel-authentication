@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getProfile } from './UserFunctions'
+import { getProfile } from './Functions/UserFunctions'
 import Navbar from './Navbar';
 
 class Profile extends Component {

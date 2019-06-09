@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import {getProfile} from './UserFunctions'
 
 class Landing extends Component {
   constructor() {
@@ -56,13 +55,14 @@ class Landing extends Component {
         </li> */}
         <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {localStorage.username}
+        {localStorage.username} 
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
           <Link to="/profile" className="dropdown-item">
           <i className='fa fa-user'></i> Account
           </Link>
+          <div className="dropdown-divider"></div>
           <a href="" onClick={this.logOut.bind(this)} className="dropdown-item">
            <i className='fa fa-sign-out'></i>  Logout
           </a>
@@ -96,6 +96,12 @@ class Landing extends Component {
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              
+              <Link to="/task" className="nav-link">
+                Task
               </Link>
             </li>
           </ul>

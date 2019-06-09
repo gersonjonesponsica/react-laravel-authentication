@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { resetPassword } from './UserFunctions'
+import { resetPassword } from './Functions/UserFunctions'
 import { Link } from 'react-router-dom'
 import './Register/Register.css'
 
